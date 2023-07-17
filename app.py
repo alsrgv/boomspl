@@ -19,4 +19,4 @@ voltage = st.number_input("Measured voltage (V)", value=1.0, min_value=0.01, max
 pressure_pa = voltage / 10 ** (microphone_sensitivity_dbv_pa / 20)
 reference_pressure_pa = 20 * 1e-6
 spl = 20 * math.log(pressure_pa / reference_pressure_pa, 10)
-st.success(f"Calculated SPL: **{spl:.2f} dB**")
+st.metric(label="Calculated SPL", value=f"{spl:.2f} dB", delta=f"{spl-140:.2f} dB vs hearing damage threshold", delta_color="inverse")
